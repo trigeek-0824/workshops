@@ -9,8 +9,6 @@
 #    2. Create 'tomcat' group
 #    3. Create 'tomcat' user
 #    4. Download 'tomcat' to /tmp
-#           TODO: Should I clean up /tmp -- check
-#           TODO: Can I install streaming?
 #    5. Make the Target Dir
 #    6. Untar to Target 
 #    7. Change Perms on Target
@@ -71,10 +69,16 @@ end
 #              as the Ruby for this looks significnatly more difficult wit
 #              some quesionably up to date libraries.
 #        I might be missing something.
+#
+#        Adding cleanup to remove tar.gz for good measure
 #####
 execute 'untar_tmp_tomcat_tgz_file' do
 	command 'sudo tar xvf /tmp/apache-tomcat-8.5.23.tar.gz -C /opt/tomcat --strip-components=1'
 	cwd '/tmp'
+end
+
+file '/tmp/apache-tomcat-8.5.23.tar.gz' do
+	action :delete
 end
 
 #####
