@@ -76,8 +76,8 @@ execute "a2enmod rewrite" do
 	command "/usr/sbin/a2enmod rewrite"
 end
 
-cookbook_file '/etc/apache2/sites-enabled/blog.conf' do
-	source 'middleman-blog.conf'
+template '/etc/apache2/sites-enabled/blog.conf' do
+	source 'middleman-blog.conf.erb'
 	owner  'root'
 	group  'root'
 	mode   '0644'
